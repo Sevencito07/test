@@ -1,15 +1,24 @@
 //import { createPool} from "mysql2/promise";
 import { createPool } from "mysql2/promise";
 import  express, { text } from "express";
+import { config } from "dotenv";
 
 const app = express();
 
+config()
+const PORT1= process.env.PORT1 || 3000;
+ const USER= process.env.USER;
+  const PASSWORD= process.env.PASSWORD;
+ const HOST = process.env.HOST;
+ const DB = process.env.DB;
+ const  PORT = process.env.PORT;
+
 const pool = createPool({
-  host: "viaduct.proxy.rlwy.net",
-  user: "root",
-  password: "kEYnelPIORHxzTJSfcazoysazsFLDjrV",
-  port: 32717,
-  database: "railway",
+ host:  HOST,
+  user:  USER,
+  password: PASSWORD,
+  port: PORT,
+  database: DB,
 });
 
 app.get("/", async (req, res) => {
@@ -23,7 +32,7 @@ app.get("/", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor Express escuchando en el puerto ${PORT}`);
+const PORT2 = process.env.PORT1 || 3000;
+app.listen(PORT2, () => {
+  console.log(`Servidor Express escuchando en el puerto ${PORT2}`);
 });
