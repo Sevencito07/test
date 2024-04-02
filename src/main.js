@@ -4,7 +4,6 @@ import  express, { text } from "express";
 import { config } from "dotenv";
 
 const app = express();
-
 config()
 const PORT1= process.env.PORT1 || 3000;
  const USER= process.env.USER;
@@ -26,13 +25,14 @@ app.get("/", async (req, res) => {
     const [rows]= await pool.query('SELECT * FROM test')
     res.send({rows})
    console.log("working")
+ 
   } catch (error) {
     console.error("Error al obtener datos de la base de datos:", error);
     res.status(500).json({ error: "Error al obtener datos de la base de datos" });
   }
 });
 
-const PORT2 = process.env.PORT1 || 3000;
+const PORT2 = PORT1;
 app.listen(PORT2, () => {
   console.log(`Servidor Express escuchando en el puerto ${PORT2}`);
 });
